@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Simple Web App</title>
+    <title>Modern Web App</title>
     <style>
         :root {
-            --primary-color: #6200ea;
-            --text-color: #333;
-            --background-color: #f4f4f9;
+            --primary-color: #4CAF50;
+            --text-color: #222;
+            --background-color: #F0F0F0;
+            --font-family: 'Arial', sans-serif;
         }
 
         * {
@@ -19,7 +19,7 @@
         }
 
         body {
-            font-family: 'Arial', sans-serif;
+            font-family: var(--font-family);
             background-color: var(--background-color);
             color: var(--text-color);
             display: flex;
@@ -29,51 +29,55 @@
         }
 
         main {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             text-align: center;
-            padding: 20px;
-            border-radius: 8px;
-            background: #ffffff;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
         }
 
         h1 {
-            font-size: 2rem;
+            font-size: 1.8rem;
             margin-bottom: 1rem;
             color: var(--primary-color);
         }
 
+        p {
+            font-size: 1rem;
+            margin-top: 1rem;
+        }
+
         button {
-            background: var(--primary-color);
-            color: #ffffff;
-            border: none;
             padding: 10px 20px;
             font-size: 1rem;
+            color: white;
+            background-color: var(--primary-color);
+            border: none;
+            border-radius: 5px;
             cursor: pointer;
-            border-radius: 4px;
-            transition: background 0.3s ease;
+            transition: background-color 0.3s ease;
         }
 
         button:hover {
-            background: #3700b3;
-        }
-
-        #message {
-            margin-top: 1rem;
-            font-size: 1.1rem;
+            background-color: #388E3C;
         }
     </style>
 </head>
 <body>
     <main>
-        <h1>Welcome to My Web App</h1>
+        <h1>Welcome to My Modern Web App</h1>
         <button id="action-btn">Click Me</button>
         <p id="message" aria-live="polite"></p>
     </main>
 
     <script>
-        document.getElementById('action-btn').addEventListener('click', () => {
-            const messageElement = document.getElementById('message');
-            messageElement.textContent = "Hello, World!";
+        const button = document.getElementById('action-btn');
+        const message = document.getElementById('message');
+
+        button.addEventListener('click', () => {
+            message.textContent = "You clicked the button! 🚀";
         });
     </script>
 </body>
