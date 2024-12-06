@@ -3,39 +3,78 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Simple Web App</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
+        :root {
+            --primary-color: #6200ea;
+            --text-color: #333;
+            --background-color: #f4f4f9;
+        }
+
+        * {
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            background-color: #f4f4f9;
+            min-height: 100vh;
         }
-        #app {
+
+        main {
             text-align: center;
+            padding: 20px;
+            border-radius: 8px;
+            background: #ffffff;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
+
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+
         button {
+            background: var(--primary-color);
+            color: #ffffff;
+            border: none;
             padding: 10px 20px;
-            font-size: 16px;
+            font-size: 1rem;
             cursor: pointer;
+            border-radius: 4px;
+            transition: background 0.3s ease;
+        }
+
+        button:hover {
+            background: #3700b3;
+        }
+
+        #message {
+            margin-top: 1rem;
+            font-size: 1.1rem;
         }
     </style>
 </head>
 <body>
-    <div id="app">
+    <main>
         <h1>Welcome to My Web App</h1>
-        <button onclick="showMessage()">Click Me</button>
-        <p id="message"></p>
-    </div>
+        <button id="action-btn">Click Me</button>
+        <p id="message" aria-live="polite"></p>
+    </main>
+
     <script>
-        function showMessage() {
-            document.getElementById('message').innerText = "Hello, World!";
-        }
+        document.getElementById('action-btn').addEventListener('click', () => {
+            const messageElement = document.getElementById('message');
+            messageElement.textContent = "Hello, World!";
+        });
     </script>
 </body>
 </html>
-
