@@ -3,13 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Modern Web App</title>
+    <title>Advanced Web App</title>
     <style>
         :root {
             --primary-color: #4CAF50;
+            --secondary-color: #388E3C;
             --text-color: #222;
             --background-color: #F0F0F0;
+            --card-background: #FFFFFF;
             --font-family: 'Arial', sans-serif;
+        }
+
+        [data-theme="dark"] {
+            --primary-color: #BB86FC;
+            --secondary-color: #3700B3;
+            --text-color: #FFFFFF;
+            --background-color: #121212;
+            --card-background: #1F1F1F;
         }
 
         * {
@@ -26,27 +36,29 @@
             justify-content: center;
             align-items: center;
             min-height: 100vh;
+            transition: background-color 0.3s, color 0.3s;
         }
 
         main {
-            background: white;
+            background: var(--card-background);
             padding: 2rem;
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             text-align: center;
-            max-width: 400px;
+            max-width: 500px;
             width: 100%;
+            transition: background-color 0.3s;
         }
 
         h1 {
-            font-size: 1.8rem;
+            font-size: 2rem;
             margin-bottom: 1rem;
             color: var(--primary-color);
         }
 
         p {
             font-size: 1rem;
-            margin-top: 1rem;
+            margin: 1rem 0;
         }
 
         button {
@@ -57,28 +69,68 @@
             border: none;
             border-radius: 5px;
             cursor: pointer;
-            transition: background-color 0.3s ease;
+            transition: background-color 0.3s, transform 0.2s;
         }
 
         button:hover {
-            background-color: #388E3C;
+            background-color: var(--secondary-color);
+            transform: scale(1.05);
+        }
+
+        .toggle-theme {
+            background-color: transparent;
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+            margin-top: 1rem;
+        }
+
+        .toggle-theme:hover {
+            background-color: var(--primary-color);
+            color: white;
         }
     </style>
 </head>
 <body>
     <main>
-        <h1>Welcome to My Modern Web App</h1>
+        <h1>Welcome to My Advanced Web App</h1>
         <button id="action-btn">Click Me</button>
-        <p id="message" aria-live="polite"></p>
+        <p id="message" aria-live="polite">Click the button to see magic happen!</p>
+        <button id="theme-toggle" class="toggle-theme">Toggle Dark Mode</button>
     </main>
 
     <script>
         const button = document.getElementById('action-btn');
         const message = document.getElementById('message');
+        const themeToggle = document.getElementById('theme-toggle');
+        const body = document.body;
 
+        const messages = [
+            "Hello, World! 🌍",
+            "You clicked the button! 🚀",
+            "Keep exploring! ✨",
+            "Code is fun! 😄",
+            "Dark mode is awesome! 🌙"
+        ];
+
+        // Dynamic Message Display
         button.addEventListener('click', () => {
-            message.textContent = "You clicked the button! 🚀";
+            const randomIndex = Math.floor(Math.random() * messages.length);
+            message.textContent = messages[randomIndex];
         });
+
+        // Dark Mode Toggle
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = body.getAttribute('data-theme');
+            const newTheme = currentTheme === "dark" ? "light" : "dark";
+            body.setAttribute('data-theme', newTheme);
+            themeToggle.textContent = newTheme === "dark" ? "Switch to Light Mode" : "Switch to Dark Mode";
+        });
+
+        // Set Initial Theme
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            body.setAttribute('data-theme', 'dark');
+            themeToggle.textContent = "Switch to Light Mode";
+        }
     </script>
 </body>
 </html>
